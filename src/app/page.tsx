@@ -1,101 +1,90 @@
-import Image from "next/image";
+"use client";
+
+import React, { useEffect, useState } from "react";
+import CarouselGallery from "@/components/CarouselGallery";
+import { motion } from "framer-motion";
+import Link from "next/link";
+
+const quotes = [
+  "Senyumnya itu… seperti jeda dari semua lelah yang ada.",
+  "Kadang cukup lihat dia bahagia, semua terasa baik-baik saja.",
+  "Delynn itu bukan hanya nama. Dia rasa, dia hangat, dia rumah.",
+  "Kalau dunia terlalu ribut, lihat Delynn sebentar saja.",
+  "Ada manis yang tak bisa dijelaskan—lihat saja caranya tertawa."
+];
 
 export default function Home() {
-  return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="https://nextjs.org/icons/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
+  const [randomQuote, setRandomQuote] = useState("");
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="https://nextjs.org/icons/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+  useEffect(() => {
+    const quote = quotes[Math.floor(Math.random() * quotes.length)];
+    setRandomQuote(quote);
+  }, []);
+
+  return (
+    <main className="pt-24 px-6 min-h-screen bg-gradient-to-br from-rose-50 via-pink-100 to-white dark:from-zinc-900 dark:via-purple-900 dark:to-zinc-900 text-gray-800 dark:text-gray-100 transition-colors duration-500 items-center justify-center">
+      <div className="flex flex-row items-center justify-center gap-12 flex-wrap">
+        {/* Kartu Carousel */}
+        <div className="w-[300px] sm:w-[360px] md:w-[420px] aspect-[3/4] rounded-3xl shadow-xl overflow-hidden border-4 border-pink-200 dark:border-pink-400">
+          <CarouselGallery />
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
+
+        {/* Deskripsi */}
+        <div className="flex flex-col items-center justify-center max-w-xl text-center">
+          <motion.h1
+            className="text-5xl font-pacifico text-pink-600 dark:text-pink-300 mb-4"
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.3 }}
+          >
+            Welcome to Delynn World
+          </motion.h1>
+
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1, delay: 0.6 }}
+            className="text-lg text-gray-700 dark:text-gray-300 leading-relaxed"
+          >
+            Selamat datang di ruang kecil ini — tempat di mana pesona dan kehangatan seorang {''} 
+            <span className="text-pink-500 font-semibold">Delynn</span> dituangkan dalam potret-potret yang tak lekang oleh waktu.  
+            Setiap senyumnya menyimpan cerita, setiap tatapannya seperti bisikan lembut yang menyentuh hati.  
+
+            Ini bukan sekadar galeri, tapi kumpulan momen yang diam-diam membuat kita jatuh cinta… perlahan, tapi pasti.  
+            Semoga di sini, kamu merasakan hangatnya dunia yang ia bawa — dengan caranya yang sederhana tapi selalu membekas.
+          </motion.p>
+
+          {/* Random Quote */}
+          <motion.blockquote
+            className="mt-6 italic text-pink-500 text-base font-medium"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 1.2, duration: 1 }}
+          >
+            “{randomQuote}”
+          </motion.blockquote>
+
+          {/* Explore Button */}
+          <motion.div
+            className="mt-8"
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 1.5, duration: 0.6 }}
+          >
+            <Link
+              href="/gallery"
+              className="px-6 py-2 bg-pink-500 hover:bg-pink-600 text-white font-semibold rounded-full transition shadow-md"
+            >
+              Pap Imut Bu Boss →
+            </Link>
+          </motion.div>
+        </div>
+      </div>
+
+      <hr className="border-t border-pink-300 dark:border-pink-600 mt-16 mx-auto w-1/3 opacity-30" />
+      <footer className="text-sm text-center text-gray-500 dark:text-gray-400 py-6">
+        Made with <span className="text-red-500">❤️</span> for Delynn — 2025
       </footer>
-    </div>
+    </main>
   );
 }
