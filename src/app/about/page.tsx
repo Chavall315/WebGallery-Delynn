@@ -81,8 +81,21 @@ export default function AboutPage() {
       
 
       <hr className="border-t border-pink-300 dark:border-pink-600 mt-16 mx-auto w-1/3 opacity-30" />
-      <footer className="mt-16 py-8 text-center text-sm text-gray-500 dark:text-gray-400">
-        Made with ❤️ for Delynn — 2025
+      <footer className="text-sm text-center text-gray-500 dark:text-gray-400 py-6 space-y-1">
+        <div>
+          Made with <span className="text-red-500">❤️</span> for <span className="text-pink-600 dark:text-pink-400 font-semibold">Delynn</span> — 2025
+        </div>
+        <div>
+          &copy; <span className="font-medium text-gray-700 dark:text-gray-200">delynn.world</span> — Created by{" "}
+          <a
+            href="https://x.com/_Chavall"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="underline underline-offset-2 hover:text-pink-600 dark:hover:text-pink-400 transition"
+          >
+            Naufal Bagaskara
+          </a>
+        </div>
       </footer>
     </main>
   );

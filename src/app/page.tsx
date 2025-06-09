@@ -85,7 +85,7 @@ export default function Home() {
         <div>
           &copy; <span className="font-medium text-gray-700 dark:text-gray-200">delynn.world</span> — Created by{" "}
           <a
-            href="https://github.com/Chavall315"
+            href="https://x.com/_Chavall"
             target="_blank"
             rel="noopener noreferrer"
             className="underline underline-offset-2 hover:text-pink-600 dark:hover:text-pink-400 transition"
