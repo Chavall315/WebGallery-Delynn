@@ -7,7 +7,8 @@ export default function GalleryPage() {
       <GalleryGrid />
       <hr className="border-t border-pink-300 dark:border-pink-600 mt-16 mx-auto w-1/3 opacity-30" />
       <footer className="text-sm text-center text-gray-500 dark:text-gray-400 py-6">
-        Made with <span className="text-red-500">❤️</span> for Delynn — 2025
+        Made with <span className="text-red-500">❤️</span> for Delynn — 2025<br />
+        © <span className="font-medium text-gray-700 dark:text-gray-200">delynn.world</span> — Created by <span className="underline underline-offset-2">Naufal Bagaskara</span>
       </footer>
     </main>
   );

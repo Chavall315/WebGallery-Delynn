@@ -24,12 +24,10 @@ export default function Home() {
   return (
     <main className="pt-24 px-6 min-h-screen bg-gradient-to-br from-rose-50 via-pink-100 to-white dark:from-zinc-900 dark:via-purple-900 dark:to-zinc-900 text-gray-800 dark:text-gray-100 transition-colors duration-500 items-center justify-center">
       <div className="flex flex-row items-center justify-center gap-12 flex-wrap">
-        {/* Kartu Carousel */}
         <div className="w-[300px] sm:w-[360px] md:w-[420px] aspect-[3/4] rounded-3xl shadow-xl overflow-hidden border-4 border-pink-200 dark:border-pink-400">
           <CarouselGallery />
         </div>
 
-        {/* Deskripsi */}
         <div className="flex flex-col items-center justify-center max-w-xl text-center">
           <motion.h1
             className="text-5xl font-pacifico text-pink-600 dark:text-pink-300 mb-4"
@@ -54,7 +52,6 @@ export default function Home() {
             Semoga di sini, kamu merasakan hangatnya dunia yang ia bawa — dengan caranya yang sederhana tapi selalu membekas.
           </motion.p>
 
-          {/* Random Quote */}
           <motion.blockquote
             className="mt-6 italic text-pink-500 text-base font-medium"
             initial={{ opacity: 0 }}
@@ -64,7 +61,6 @@ export default function Home() {
             “{randomQuote}”
           </motion.blockquote>
 
-          {/* Explore Button */}
           <motion.div
             className="mt-8"
             initial={{ opacity: 0, y: 10 }}
@@ -82,8 +78,21 @@ export default function Home() {
       </div>
 
       <hr className="border-t border-pink-300 dark:border-pink-600 mt-16 mx-auto w-1/3 opacity-30" />
-      <footer className="text-sm text-center text-gray-500 dark:text-gray-400 py-6">
-        Made with <span className="text-red-500">❤️</span> for Delynn — 2025
+      <footer className="text-sm text-center text-gray-500 dark:text-gray-400 py-6 space-y-1">
+        <div>
+          Made with <span className="text-red-500">❤️</span> for <span className="text-pink-600 dark:text-pink-400 font-semibold">Delynn</span> — 2025
+        </div>
+        <div>
+          &copy; <span className="font-medium text-gray-700 dark:text-gray-200">delynn.world</span> — Created by{" "}
+          <a
+            href="https://github.com/Chavall315"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="underline underline-offset-2 hover:text-pink-600 dark:hover:text-pink-400 transition"
+          >
+            Naufal Bagaskara
+          </a>
+        </div>
       </footer>
     </main>
   );

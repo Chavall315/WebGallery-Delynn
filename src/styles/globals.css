@@ -37,3 +37,7 @@ html, body {
 h1 {
   font-family: var(--font-pacifico), cursive;
 }
+
+html {
+  scroll-behavior: smooth;
+}

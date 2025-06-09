@@ -59,8 +59,8 @@ export default function AboutPage() {
 
       <motion.div className="max-w-xl mx-auto mt-12 p-6 bg-pink-50 dark:bg-zinc-800/50 rounded-2xl shadow-inner text-center">
         <blockquote className="italic text-pink-800 dark:text-pink-300">
-          "Cintaku padanya tidak butuh tempat di sisinya — cukup di ruang-ruang kecil seperti ini, 
-          tempat aku bisa menatapnya dari jauh dan diam-diam bersyukur bahwa dia pernah ada di hidupku."
+          Cintaku padanya tidak butuh tempat di sisinya — cukup di ruang-ruang kecil seperti ini, 
+          tempat aku bisa menatapnya dari jauh dan diam-diam bersyukur bahwa dia pernah ada di hidupku.
         </blockquote>
       </motion.div>
 

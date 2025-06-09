@@ -7,6 +7,22 @@ import BackgroundMusic from "@/components/BackgroundMusic";
 export const metadata = {
   title: "My Love Gallery",
   description: "Official fan gallery of Delynn JKT48",
+  authors: [{ name: "Naufal Bagaskara Budihutama", url: "https://delynn.world" }],
+  creator: "Naufal Bagaskara Budihutama",
+  publisher: "Delynn World",
+  keywords: ["Delynn", "JKT48", "Gallery", "Photography", "Fanmade", "Love"],
+  robots: "index, follow",
+  openGraph: {
+    title: "My Love Gallery",
+    description: "Official fan gallery of Delynn JKT48",
+    url: "https://delynn.world",
+    siteName: "Delynn.World",
+    type: "website",
+    locale: "en_US",
+  },
+  icons: {
+    icon: "/favicon.ico",
+  },
 };
 
 const pacifico = Pacifico({
