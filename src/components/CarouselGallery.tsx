@@ -21,7 +21,7 @@ export default function CarouselGallery() {
       autoplay={{ delay: 3000 }}
       loop
       speed={800}
-      className="w-full h-full"
+      className="w-full h-screen" // kasih tinggi supaya kelihatan
     >
       {images.map((src, idx) => (
         <SwiperSlide key={idx}>
@@ -30,7 +30,7 @@ export default function CarouselGallery() {
               src={src}
               alt={`Delynn ${idx + 1}`}
               fill
-              className="object-cover"
+              className="object-cover rounded-xl"
               priority
             />
           </div>

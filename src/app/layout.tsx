@@ -2,14 +2,13 @@ import "../styles/globals.css";
 import { ReactNode } from "react";
 import Navbar from "@/components/Navbar";
 import { Pacifico } from 'next/font/google'
-import BackgroundMusic from "@/components/BackgroundMusic";
 
 export const metadata = {
-  title: "My Love Gallery",
+  title: "Delynn.World",
   description: "Official fan gallery of Delynn JKT48",
   authors: [{ name: "Naufal Bagaskara Budihutama", url: "https://delynn.world" }],
   creator: "Naufal Bagaskara Budihutama",
-  publisher: "Delynn World",
+  publisher: "NaufalGaskara",
   keywords: ["Delynn", "JKT48", "Gallery", "Photography", "Fanmade", "Love"],
   robots: "index, follow",
   openGraph: {
@@ -38,7 +37,6 @@ export default function RootLayout({ children }: { children: ReactNode }) {
     <html lang="en" className={`dark ${pacifico.variable}`}>
       <body className="bg-white text-gray-800">
         <Navbar />
-        <BackgroundMusic />
         {children}
       </body>
     </html>
