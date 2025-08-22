@@ -136,23 +136,25 @@ export default function AboutPage() {
                         priority
                         className="w-full h-full object-cover transition-all duration-700 group-hover:brightness-110"
                         onError={(e) => {
-                          console.log('Image failed to load:', e);
-                          // Try alternative paths
+                          const img = e.currentTarget as HTMLImageElement;
+                          console.log("Image failed to load:", img.src);
+
                           const altPaths = [
-                            '/delynn-about.jpg',
-                            './images/delynn-about.jpg',
-                            '/images/delynn-about.jpeg',
-                            '/images/delynn-about.png'
+                            "/delynn-about.jpg",
+                            "./images/delynn-about.jpg",
+                            "/images/delynn-about.jpeg",
+                            "/images/delynn-about.png",
                           ];
-                          
-                          let currentIndex = parseInt(e.target.dataset.attemptIndex || '0');
+
+                          const currentIndex = parseInt(img.dataset.attemptIndex || "0");
                           if (currentIndex < altPaths.length) {
-                            e.target.src = altPaths[currentIndex];
-                            e.target.dataset.attemptIndex = (currentIndex + 1).toString();
+                            img.src = altPaths[currentIndex];
+                            img.dataset.attemptIndex = (currentIndex + 1).toString();
                           } else {
-                            // All attempts failed, show placeholder
-                            e.target.style.display = 'none';
-                            e.target.nextElementSibling.style.display = 'flex';
+                            img.style.display = "none";
+                            if (img.nextElementSibling) {
+                              img.nextElementSibling.setAttribute("style", "display:flex");
+                            }
                           }
                         }}
                       />
@@ -326,8 +328,8 @@ export default function AboutPage() {
             {/* Content */}
             <div className="relative p-8 lg:p-12 text-center">
               {/* Large decorative quotes */}
-              <div className="absolute -top-4 -left-4 text-pink-400/40 text-8xl font-serif leading-none">"</div>
-              <div className="absolute -bottom-8 -right-4 text-pink-400/40 text-8xl font-serif leading-none rotate-180">"</div>
+              <div className="absolute -top-4 -left-4 text-pink-400/40 text-8xl font-serif leading-none">&quot;</div>
+              <div className="absolute -bottom-8 -right-4 text-pink-400/40 text-8xl font-serif leading-none rotate-180">&quot;</div>
               
               <blockquote className="relative text-xl lg:text-2xl italic text-pink-800 dark:text-pink-300 leading-relaxed max-w-3xl mx-auto">
                 Cintaku padanya tidak butuh tempat di sisinya — cukup di ruang-ruang kecil seperti ini, 

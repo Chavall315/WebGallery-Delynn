@@ -44,7 +44,7 @@ export default function Home() {
     setRandomQuote(quote);
 
     // Mouse position tracking for parallax effect
-    const handleMouseMove = (e) => {
+    const handleMouseMove = (e: MouseEvent) => {
       setMousePosition({
         x: (e.clientX / window.innerWidth) * 2 - 1,
         y: (e.clientY / window.innerHeight) * 2 - 1
@@ -183,7 +183,7 @@ export default function Home() {
               whileHover={{ scale: 1.05, x: 5 }}
             >
               <blockquote className="italic text-pink-600 dark:text-pink-400 text-base font-medium">
-                "{randomQuote}"
+                &quot;{randomQuote}&quot;
               </blockquote>
             </motion.div>
 

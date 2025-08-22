@@ -7,7 +7,7 @@ export default function LetterPage() {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   
   useEffect(() => {
-    const handleMouseMove = (e) => {
+    const handleMouseMove = (e: MouseEvent) => {
       setMousePosition({ x: e.clientX, y: e.clientY });
     };
     window.addEventListener('mousemove', handleMouseMove);
@@ -154,9 +154,9 @@ export default function LetterPage() {
           transition={{ delay: 1.2, duration: 0.8 }}
           className="relative italic text-center max-w-2xl mt-16 mb-12 text-lg text-pink-700 dark:text-pink-300 bg-gradient-to-r from-transparent via-pink-50/50 to-transparent dark:via-purple-900/30 p-6 rounded-2xl border-l-4 border-pink-400 dark:border-pink-500 shadow-lg backdrop-blur-sm"
         >
-          <div className="absolute top-2 left-6 text-pink-400/50 text-4xl font-serif">"</div>
+          <div className="absolute top-2 left-6 text-pink-400/50 text-4xl font-serif">&quot;</div>
           <span className="relative z-10">Beberapa rasa nggak perlu dikatakan — cukup dituliskan, dan diabadikan.</span>
-          <div className="absolute bottom-2 right-6 text-pink-400/50 text-4xl font-serif rotate-180">"</div>
+          <div className="absolute bottom-2 right-6 text-pink-400/50 text-4xl font-serif rotate-180">&quot;</div>
         </motion.blockquote>
 
         {/* Enhanced Button */}
