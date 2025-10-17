@@ -11,6 +11,12 @@ const nextConfig = {
       },
     ],
   },
+  api: {
+    bodyParser: false, // penting untuk formData
+  },
+  experimental: {
+    serverActionsBodySizeLimit: '10mb', // optional, untuk action server
+  },
 };
 
 export default nextConfig;
