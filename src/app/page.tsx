@@ -263,7 +263,7 @@ export default function Home() {
                 <span className="font-medium text-gray-700 dark:text-gray-200">delynn.world</span>
                 <span>— Created by</span>
                 <a
-                  href="https://x.com/_Chavall"
+                  href="https://x.com/NaufalGaskara"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="underline underline-offset-2 hover:text-pink-600 dark:hover:text-pink-400 transition-colors duration-300 font-medium"

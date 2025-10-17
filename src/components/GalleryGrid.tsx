@@ -3,9 +3,9 @@
 import { useState, useEffect } from "react";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
-import { Heart, Filter, Shuffle, X, ZoomIn } from "lucide-react";
+import { Heart, Filter, Shuffle, X, ZoomIn, Upload } from "lucide-react";
 
-const photos = Array.from({ length: 65 }, (_, i) => `/images/delynn-${i + 1}.jpg`);
+const initialLocalPhotos = Array.from({ length: 65 }, (_, i) => `/images/delynn-${i + 1}.jpg`);
 
 export default function GalleryGrid() {
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
@@ -15,13 +15,35 @@ export default function GalleryGrid() {
   const [imageLoaded, setImageLoaded] = useState<string[]>([]);
   const [shuffledPhotos, setShuffledPhotos] = useState<string[]>([]);
   const [isShuffling, setIsShuffling] = useState(false);
+  const [isUploading, setIsUploading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
+  const [photos, setPhotos] = useState<string[]>(initialLocalPhotos);
+  
 
   useEffect(() => {
     setIsMounted(true);
-    setShuffledPhotos(photos);
-    // Using in-memory storage instead of localStorage for artifact compatibility
-    // const stored = localStorage.getItem("favorites");
-    // if (stored) setFavorites(JSON.parse(stored));
+
+    // 🔹 Fetch dari database Cloudinary
+    const fetchPhotos = async () => {
+      try {
+        const res = await fetch("/api/photos");
+        if (!res.ok) throw new Error("Gagal ambil foto dari server");
+
+        const data = await res.json();
+
+        // data di sini bentuknya [{ id, imageUrl, title, createdAt }, ...]
+        const cloudPhotos = data.map((item: { id: string; imageUrl: string; title: string; createdAt: string }) => item.imageUrl);
+
+        setPhotos([...cloudPhotos, ...initialLocalPhotos]);
+        setShuffledPhotos([...cloudPhotos, ...initialLocalPhotos]);
+      } catch (err) {
+        console.error(err);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchPhotos();
   }, []);
 
   // Commented out localStorage for artifact compatibility
@@ -44,12 +66,58 @@ export default function GalleryGrid() {
     }, 300);
   };
 
+  const handleUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+
+    setIsUploading(true);
+
+    try {
+      const formData = new FormData();
+      formData.append("file", file);
+      formData.append("title", file.name);
+
+      const res = await fetch("/api/upload", {
+        method: "POST",
+        body: formData,
+      });
+
+      if (!res.ok) throw new Error("Upload gagal");
+
+      const data = await res.json();
+
+      // tambahkan foto baru ke grid
+      setShuffledPhotos((prev) => [data.imageUrl, ...prev]);
+      setPhotos((prev) => [data.imageUrl, ...prev]);
+      alert("✅ Upload berhasil!");
+    } catch (err) {
+      console.error(err);
+      alert("❌ Upload gagal, cek console untuk detail.");
+    } finally {
+      setIsUploading(false);
+      e.target.value = ""; // reset input
+    }
+  };
+
   const filteredPhotos =
     filterMode === "favorites"
       ? shuffledPhotos.filter((src) => favorites.includes(src))
       : shuffledPhotos;
 
   if (!isMounted) return null;
+
+  if (isLoading) {
+  return (
+    <div className="flex flex-col items-center justify-center py-32 text-gray-600 dark:text-gray-300">
+      <motion.div
+        className="w-12 h-12 border-4 border-pink-400 border-t-transparent rounded-full mb-4"
+        animate={{ rotate: 360 }}
+        transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
+      />
+      <p className="text-lg font-medium">Loading gallery...</p>
+    </div>
+  );
+}
 
   return (
     <motion.div
@@ -120,6 +188,29 @@ export default function GalleryGrid() {
               {isShuffling ? 'Shuffling...' : 'Shuffle'}
             </span>
           </motion.button>
+
+          {/* Upload button */}
+          <label className="relative cursor-pointer">
+            <input
+              type="file"
+              accept="image/*"
+              className="hidden"
+              onChange={handleUpload}
+              disabled={isUploading}
+            />
+            <motion.div
+              className={`flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-medium transition-all duration-300 ${
+                isUploading
+                  ? "bg-gray-300 dark:bg-gray-700 cursor-not-allowed"
+                  : "bg-gradient-to-r from-green-500 to-emerald-500 text-white hover:from-green-600 hover:to-emerald-600 shadow-lg"
+              }`}
+              whileHover={!isUploading ? { scale: 1.05 } : {}}
+              whileTap={!isUploading ? { scale: 0.95 } : {}}
+            >
+              <Upload className="w-4 h-4" />
+              {isUploading ? "Uploading..." : "Upload"}
+            </motion.div>
+          </label>
         </div>
       </motion.div>
 
